@@ -2,7 +2,6 @@
 include("./layout/Header.php");
 include("./layout/Navbar.php");
 ?>
-
 <!DOCTYPE html>
 <html lang="en">
     <head>
@@ -30,10 +29,14 @@ include("./layout/Navbar.php");
                         <div class="row">
                             <div class="col">
                                 <div class="card shadow-lg border-0">
-                                    <div class="card-header"><h6 class="text-center font-weight-light">Registrar Usuarios</h6>
-                                    </div>
+                                    <div class="card-header"><h6 class="text-center font-weight-light">Registrar Usuarios</h6></div>
+                                        <?php
+                                        // Se llaman los archivos a utilizar para el funcionamiendo del formulario en el registro de usuarios
+                                            include "Models/conexion.php";
+                                            include "Controllers/registro_usuarios.php";
+                                        ?>
                                     <div class="card-body">
-                                        <form action="register-user.php" method="POST">
+                                        <form action="" method="POST">
                                             <div class="row mb-2">
                                                 <div class="col-md-4">
                                                     <div class="form-floating mb-3 mb-md-0">
@@ -71,7 +74,7 @@ include("./layout/Navbar.php");
                                                     </div>
                                                 </div>
                                             </div>
-                                            <input  class="btn btn-success text-dark" type="submit" name="registrarme" size="10" value="Registrarme">
+                                            <input  class="btn btn-success text-dark" type="submit" name="btnregistro" size="10" value="Registrar">
                                         </form>
                                     </div>
                                 </div>
@@ -110,12 +113,12 @@ include("./layout/Navbar.php");
                                             $sql = $conexion->query("select * from usuarios");
                                                 while($datos=$sql->fetch_object()){ ?>
                                                     <tr>
-                                                        <td><?= $datos->id_usuario?></td>
-                                                        <td><?= $datos->nombreu?></td>
-                                                        <td><?= $datos->appu?></td>
-                                                        <td><?= $datos->apmu?></td>
-                                                        <td><?= $datos->emailu?></td>
-                                                        <td><?= $datos->id_departamento?></td>
+                                                        <td><?= $datos->id_usuario ?></td>
+                                                        <td><?= $datos->nombreu ?></td>
+                                                        <td><?= $datos->appu ?></td>
+                                                        <td><?= $datos->apmu ?></td>
+                                                        <td><?= $datos->emailu ?></td>
+                                                        <td><?= $datos->id_departamento ?></td>
                                                         <td>
                                                             <a href="#" class="btn btn-small btn-warning"><i class="fa-regular fa-pen-to-square fa-xl"></i></a>
                                                             <a href="#" class="btn btn-small btn-danger"><i class="fa-solid fa-trash fa-xl"></i></a>
