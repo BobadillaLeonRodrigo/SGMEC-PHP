@@ -16,9 +16,9 @@
                 $sql=$conexion->query("insert into usuarios(nombreu,appu,apmu,emailu,id_departamento)
                     values ('$nombreu','$appu','$apmu','$emailu','$id_departamento')");
                             if ($sql == 1) {
-                                echo '<div class="alert alert-success">Usuario Registrado Correctamente <i class="fa-solid fa-check fa-xl" style="color: green"></i></div>';
+                                echo '<div class="alert alert-success text-center">Usuario Registrado Correctamente <i class="fa-solid fa-check fa-xl" style="color: green"></i></div>';
                             } else {
-                                echo '<div class="alert alert-danger">Error al Registrar al Usuario</div>';
+                                echo '<div class="alert alert-danger text-center">Error al Registrar al Usuario <i class="fa-solid fa-triangle-exclamation fa-xl" style="color: red"></i></div>';
                             }
 
 
@@ -26,7 +26,7 @@
 
 
         } else {
-            echo '<i class="fa-solid fa-triangle-exclamation fa-2xl" style="color: #ff0000;">Algunos de los Campos se encuentran vacios</i>';
+            echo '<div class="alert alert-warning text-center">Ingrese Todos los Campos Correspondientes <i class="fa-solid fa-triangle-exclamation fa-xl" style="color: red"></i></div>';
         }
     }
 ?>
