@@ -1,6 +1,9 @@
 <?php
 include("./layout/Header.php");
 include("./layout/Navbar.php");
+include "Models/conexion.php";
+$id = $_GET["id"];
+$sql = $conexion->query("SELECT * FROM usuarios WHERE id_usuario=$id");
 ?>
 <!DOCTYPE html>
 <html lang="en">
@@ -32,54 +35,54 @@ include("./layout/Navbar.php");
                             <div class="col">
                                 <div class="card shadow-lg border-0">
                                     <div class="card-header">
-                                        <h6 class="text-center font-weight-light">Registrar Usuarios</h6>
+                                        <h6 class="text-center font-weight-light">Modificar Usuarios</h6>
                                     </div>
-                                    <?php
-                                    // Se llaman los archivos a utilizar para el funcionamiendo del formulario en el registro de usuarios
-                                    //Primero se llama la conexion y despues los controladores
-                                    include "Models/conexion.php";
-                                    include "Controllers/registro_usuarios.php";
-                                    ?>
                                     <div class="card-body">
-                                        <form action="" method="POST">
-                                            <div class="row mb-2">
-                                                <div class="col-md-4">
-                                                    <div class="form-floating mb-3 mb-md-0">
-                                                        <input class="form-control" name="nombreu" type="text" placeholder="Enter your first name" />
-                                                        <label for="inputFirstName">Nombre</label>
+                                        <form method="POST">
+                                            <input type="hidden" name="id" value="<?= $_GET["id"] ?>">
+                                            <?php
+                                            include "Controllers/modificar_usuario.php";
+                                            while ($datos = $sql->fetch_object()) {
+                                            ?>
+                                                <div class="row mb-2">
+                                                    <div class="col-md-4">
+                                                        <div class="form-floating mb-3 mb-md-0">
+                                                            <input class="form-control" name="nombreu" value="<?= $datos->nombreu ?>" type="text" placeholder="Enter your first name" />
+                                                            <label for="inputFirstName">Nombre</label>
+                                                        </div>
+                                                    </div>
+                                                    <div class="col-md-4">
+                                                        <div class="form-floating mb-3 mb-md-0">
+                                                            <input class="form-control" name="appu" value="<?= $datos->appu ?>" type="text" placeholder="Enter your last name" />
+                                                            <label for="inputLastName">Apellido Paterno</label>
+                                                        </div>
+                                                    </div>
+                                                    <div class="col-md-4">
+                                                        <div class="form-floating mb-3 mb-md-0">
+                                                            <input class="form-control" name="apmu" value="<?= $datos->apmu ?>" type="text" placeholder="Enter your last name" />
+                                                            <label for="inputLastName">Apellido Materno</label>
+                                                        </div>
                                                     </div>
                                                 </div>
-                                                <div class="col-md-4">
-                                                    <div class="form-floating mb-3 mb-md-0">
-                                                        <input class="form-control" name="appu" type="text" placeholder="Enter your last name" />
-                                                        <label for="inputLastName">Apellido Paterno</label>
+                                                <div class="row mb-3">
+                                                    <div class="col-md-6">
+                                                        <div class="form-floating mb-3 mb-md-0">
+                                                            <input class="form-control" name="emailu" value="<?= $datos->emailu ?>" type="email" placeholder="Ejem: lerma@conalemex.edu.mx" />
+                                                            <label>Correo Electronico</label>
+                                                        </div>
                                                     </div>
-                                                </div>
-                                                <div class="col-md-4">
-                                                    <div class="form-floating mb-3 mb-md-0">
-                                                        <input class="form-control" name="apmu" type="text" placeholder="Enter your last name" />
-                                                        <label for="inputLastName">Apellido Materno</label>
+                                                    <div class="col-md-6">
+                                                        <div class="form-floating mb-md-0">
+                                                            <select class="form-control" type="text" name="id_departamento" value="<?= $datos->id_departamento ?>"">
+                                                                <option selected>Departamento</option>
+                                                                <option value=" 1">Laboratorista</option>
+                                                                <option value="2">Encargado</option>
+                                                            </select>
+                                                        </div>
                                                     </div>
+                                                <?php } ?>
                                                 </div>
-                                            </div>
-                                            <div class="row mb-3">
-                                                <div class="col-md-6">
-                                                    <div class="form-floating mb-3 mb-md-0">
-                                                        <input class="form-control" name="emailu" type="email" placeholder="Ejem: lerma@conalemex.edu.mx" />
-                                                        <label for="inputPassword">Correo Electronico</label>
-                                                    </div>
-                                                </div>
-                                                <div class="col-md-6">
-                                                    <div class="form-floating mb-md-0">
-                                                        <select class="form-control" type="text" name="id_departamento">
-                                                            <option selected>Departamento</option>
-                                                            <option value="1">Laboratorista</option>
-                                                            <option value="2">Encargado</option>
-                                                        </select>
-                                                    </div>
-                                                </div>
-                                            </div>
-                                            <input class="btn btn-success text-dark" type="submit" name="btnregistro" size="10" value="Registrar">
+                                                <input class="btn btn-success text-dark" type="submit" name="btnmodificar" size="10" value="Modificar">
                                         </form>
                                     </div>
                                 </div>
@@ -115,8 +118,7 @@ include("./layout/Navbar.php");
                         <tbody class="text-center">
                             <?php
                             include "Models/conexion.php";
-                            include "Controllers/eliminar_persona.php";
-                            $sql = $conexion->query("SELECT * FROM usuarios");
+                            $sql = $conexion->query("select * from usuarios");
                             while ($datos = $sql->fetch_object()) { ?>
                                 <tr>
                                     <td><?= $datos->id_usuario ?></td>
