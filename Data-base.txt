@@ -23,7 +23,6 @@ USE sgmec;
 	descripcion VARCHAR(200) NOT NULL,
 	id_equipo INT,
 	fecha DATE,
-	hora TIME,
 	FOREIGN KEY(id_mantenimiento)REFERENCES Mantenimiento (id_mantenimiento),
 	FOREIGN KEY(id_usuario)REFERENCES Usuarios (id_usuario),
 	FOREIGN KEY(id_equipo)REFERENCES Equipos (id_equipo)

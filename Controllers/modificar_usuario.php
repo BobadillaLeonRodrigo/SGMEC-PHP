@@ -16,7 +16,7 @@ if (!empty($_POST["btnmodificar"])) {
         //si se registro correctamente redireccionara a la pagina principal
         if ($sql == 1) {
             // si se modifico correctamente
-            header('Location: http://localhost/SGMEC-PHP/index.php');
+            header("../index.php");
         } else {
             //si al modificar marca error
             echo '<div class="alert alert-danger text-center">Error al Modificar al Usuario <i class="fa-solid fa-triangle-exclamation fa-xl" style="color: red"></i></div>';

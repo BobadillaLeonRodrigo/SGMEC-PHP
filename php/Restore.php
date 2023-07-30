@@ -13,7 +13,7 @@ $con->query("SET FOREIGN_KEY_CHECKS=1");
 $con->close();
 if($totalErrors<=0){
 	echo "Restauración completada con éxito";
-	echo '<a href="../dashboard.php"><br>Regresar al Panel Administrativo</a>';
+	echo '<a href="../index.php"><br>Regresar al Panel Administrativo</a>';
 }else{
 	echo "Ocurrio un error inesperado, no se pudo hacer la restauración completamente";
 }

@@ -110,7 +110,7 @@ include("./layout/Navbar.php");
                     </div>
                 </main>
                 <!-- La tabla no es responsiva -->
-                <div class="container">
+                <div class="container-fluid">
                     <table class="table border-dark">
                         <thead class="text-center text-dark bg-success">
                             <tr>
